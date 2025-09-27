@@ -111,13 +111,15 @@ module fade #(
             PWM_INC: begin
                 pwm_value <= pwm_value + INC_DEC_VAL;
             end
-            PWM_OFF: 
-                pwm_value <= 0;
+            PWM_HOLD:
+                pwm_value <= 1200;
             PWM_DEC: begin
                 pwm_value <= pwm_value - INC_DEC_VAL;
             end
-            PWM_HOLD:
-                pwm_value <= 1200;
+
+            PWM_OFF: 
+                pwm_value <= 0;
+                
             
         endcase
     end

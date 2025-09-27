@@ -1,0 +1,9 @@
+# Ignore compiled System Verilog files
+*.blif
+*.asc
+*.json
+*.bin
+
+# Ignore iverilog sim files
+*.vcd
+mp2
