@@ -1,0 +1,49 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Sat Sep 27 23:28:08 2025
+[*]
+[dumpfile] "/home/amanda/Documents/school/amanda-comparch/miniproject2/mp2.vcd"
+[dumpfile_mtime] "Sat Sep 27 23:23:54 2025"
+[dumpfile_size] 705590938
+[savefile] "/home/amanda/Documents/school/amanda-comparch/miniproject2/visual_style.gtkw"
+[timestart] 0
+[size] 1850 1006
+[pos] -51 -51
+*-27.299999 959999960 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] mp2_tb.
+[treeopen] mp2_tb.u0.
+[sst_width] 297
+[signals_width] 198
+[sst_expanded] 1
+[sst_vpaned_height] 299
+@8022
+[color] 1
+mp2_tb.u0.u1.red_pwm_value[10:0]
+@20000
+-
+-
+-
+-
+-
+-
+@8022
+mp2_tb.u0.u1.green_pwm_value[10:0]
+@20000
+-
+-
+-
+-
+-
+-
+@8023
+[color] 5
+mp2_tb.u0.u1.blue_pwm_value[10:0]
+@20000
+-
+-
+-
+-
+-
+-
+[pattern_trace] 1
+[pattern_trace] 0
