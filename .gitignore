@@ -7,3 +7,5 @@
 # Ignore iverilog sim files
 *.vcd
 mp2
+single
+miniproject1
