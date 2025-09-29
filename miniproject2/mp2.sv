@@ -12,17 +12,17 @@ module fade #(
     output logic [$clog2(PWM_INTERVAL) - 1:0] blue_pwm_value
 );
 
-    // Define state variable values
-    localparam [1:0] PWM_INC = 2'b00;
-    localparam [1:0] PWM_HOLD = 2'b01;
-    localparam [1:0] PWM_DEC = 2'b10;
-    localparam [1:0] PWM_OFF = 2'b11;
+    // State variables; defined by starting color
+    localparam [2:0] RED = 3'b000;
+    localparam [2:0] YELLOW = 3'b001;
+    localparam [2:0] GREEN = 3'b010;
+    localparam [2:0] CYAN = 3'b011;
+    localparam [2:0] BLUE = 3'b100;
+    localparam [2:0] PURPLE = 3'b101;
     
 
     // Declare state variables
-    logic [1:0] current_state = PWM_INC;
-    logic first_cycle = 1'b1;
-    logic next_red, next_green, next_blue;
+    logic [2:0] current_state = RED;
 
     // Declare variables for timing state transitions
     logic [$clog2(INC_DEC_INTERVAL) - 1:0] count = 0;
@@ -37,57 +37,11 @@ module fade #(
     end
 
     always_ff @(posedge time_to_transition) begin
-        case (current_state)
-            PWM_INC: begin
-                current_state <= PWM_HOLD;
-            end
-
-            PWM_HOLD: begin
-                if (first_cycle) begin
-                    first_cycle <= 1'b0; // double cycle time
-                end else begin
-                    current_state <= PWM_DEC;
-                    first_cycle <= 1'b1;
-                end
-            end
-
-            PWM_DEC: begin
-                current_state <= PWM_OFF;
-            end
-
-            PWM_OFF: begin
-                if (first_cycle) begin
-                    first_cycle <= 1'b0; // double cycle time
-                end else begin
-                    current_state <= PWM_INC;
-                    first_cycle <= 1'b1;
-                end
-            end
-
-            default: begin
-                // not super necessary, here to reset in case of glitches
-                current_state <= PWM_INC;
-                first_cycle <= 1'b1;
-            end
-        endcase
-    end
-
-    // Compute the next state of the FSM
-    always_comb begin
-        next_red = 1'b0;
-        next_green = 1'b0;
-        next_blue = 1'b0;
-        case (current_state)
-            PWM_INC: begin
-                next_red = 1'b1;
-            end
-            PWM_HOLD: begin
-                next_green = 1'b1;
-            end
-            PWM_DEC: begin
-                next_blue = 1'b1;
-            end
-        endcase
+        if (current_state != PURPLE) begin
+            current_state <= current_state + 1;
+        end else begin
+            current_state <= RED;
+        end
     end
 
     // Implement counter for incrementing / decrementing PWM value
@@ -105,43 +59,38 @@ module fade #(
     // Increment / Decrement PWM value as appropriate given current state
     always_ff @(posedge time_to_inc_dec) begin
         case (current_state)
-            PWM_INC: begin
+            RED: begin
                 // 0 to 60 degrees
-                green_pwm_value <= green_pwm_value + INC_DEC_VAL;
                 red_pwm_value <= PWM_INTERVAL;
+                green_pwm_value <= green_pwm_value + INC_DEC_VAL;
                 blue_pwm_value <= 0;
             end
-            PWM_HOLD: begin
-                green_pwm_value <= PWM_INTERVAL;
-                if (first_cycle) begin
-                    // 60 to 120 degrees
-                    red_pwm_value <= red_pwm_value - INC_DEC_VAL;
-                    blue_pwm_value <= 0;
-                end else begin
-                    // 120 to 180 degrees
-                    red_pwm_value <= 0;
-                    blue_pwm_value <= blue_pwm_value + INC_DEC_VAL;
-                end
+            YELLOW: begin
+                // 60 to 120 degrees
+                red_pwm_value <= red_pwm_value - INC_DEC_VAL;
+                green_pwm_value <= PWM_INTERVAL; 
             end
-            PWM_DEC: begin
+            GREEN: begin
+                // 120 to 180 degrees
+                red_pwm_value <= 0;
+                green_pwm_value <= PWM_INTERVAL;
+                blue_pwm_value <= blue_pwm_value + INC_DEC_VAL;
+            end
+            CYAN: begin
                 // 180 to 240 degrees
                 green_pwm_value <= green_pwm_value - INC_DEC_VAL;
-                red_pwm_value <= 0;
                 blue_pwm_value <= PWM_INTERVAL;
             end
-            PWM_OFF: begin
+            BLUE: begin
+                // 240 to 300 degrees
+                red_pwm_value <= red_pwm_value + INC_DEC_VAL;
                 green_pwm_value <= 0;
-                if (first_cycle) begin
-                    // 240 to 300 degrees
-                    red_pwm_value <= red_pwm_value + INC_DEC_VAL;
-                    blue_pwm_value <= PWM_INTERVAL;
-                end else begin
-                    // 300 to 360 degrees
-                    red_pwm_value <= PWM_INTERVAL;
-                    blue_pwm_value <= blue_pwm_value - INC_DEC_VAL;
-                end
             end
-        
+            PURPLE: begin
+                // 300 to 360 degrees
+                red_pwm_value <= PWM_INTERVAL;
+                blue_pwm_value <= blue_pwm_value - INC_DEC_VAL;
+            end
         endcase
     end
 
