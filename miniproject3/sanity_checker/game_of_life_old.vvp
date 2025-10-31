@@ -1,0 +1,467 @@
+#! /home/amanda/Documents/school/oss-cad-suite-linux-x64-20250910/oss-cad-suite/bin/vvp
+:ivl_version "13.0 (devel)" "(s20250103-66-gd67d3323a)";
+:ivl_delay_selection "TYPICAL";
+:vpi_time_precision + 0;
+:vpi_module "/home/amanda/Documents/school/oss-cad-suite-linux-x64-20250910/oss-cad-suite/lib/ivl/system.vpi";
+:vpi_module "/home/amanda/Documents/school/oss-cad-suite-linux-x64-20250910/oss-cad-suite/lib/ivl/vhdl_sys.vpi";
+:vpi_module "/home/amanda/Documents/school/oss-cad-suite-linux-x64-20250910/oss-cad-suite/lib/ivl/vhdl_textio.vpi";
+:vpi_module "/home/amanda/Documents/school/oss-cad-suite-linux-x64-20250910/oss-cad-suite/lib/ivl/v2005_math.vpi";
+:vpi_module "/home/amanda/Documents/school/oss-cad-suite-linux-x64-20250910/oss-cad-suite/lib/ivl/va_math.vpi";
+:vpi_module "/home/amanda/Documents/school/oss-cad-suite-linux-x64-20250910/oss-cad-suite/lib/ivl/v2009.vpi";
+S_0x55558644cec0 .scope package, "$unit" "$unit" 2 1;
+ .timescale 0 0;
+S_0x55558644d050 .scope module, "game_of_life" "game_of_life" 3 1;
+ .timescale 0 0;
+    .port_info 0 /INPUT 1 "clk";
+    .port_info 1 /OUTPUT 64 "output_grid";
+v0x5555864b0310_0 .var/str "INIT_FILE";
+o0x759afa744258 .functor BUFZ 1, c4<z>; HiZ drive
+v0x5555864b03f0_0 .net "clk", 0 0, o0x759afa744258;  0 drivers
+v0x5555864b04b0 .array "current_grid", 7 0, 0 7;
+v0x5555864b0550_0 .var "neighbor_count", 2 0;
+v0x5555864b0630 .array "next_grid", 7 0, 0 7;
+v0x5555864b0740_0 .var/2s "num_steps", 31 0;
+v0x5555864b0820_0 .var "output_grid", 63 0;
+S_0x55558647f990 .scope begin, "$ivl_for_loop0" "$ivl_for_loop0" 3 21, 3 21 0, S_0x55558644d050;
+ .timescale 0 0;
+v0x5555864ae790_0 .var/2s "i", 31 0;
+S_0x55558647fb70 .scope begin, "$ivl_for_loop1" "$ivl_for_loop1" 3 22, 3 22 0, S_0x55558647f990;
+ .timescale 0 0;
+v0x55558647fd50_0 .var/2s "j", 31 0;
+S_0x5555864ae890 .scope begin, "$ivl_for_loop2" "$ivl_for_loop2" 3 60, 3 60 0, S_0x55558644d050;
+ .timescale 0 0;
+v0x5555864b0210_0 .var/2s "step", 31 0;
+S_0x5555864aea90 .scope begin, "$ivl_for_loop3" "$ivl_for_loop3" 3 62, 3 62 0, S_0x5555864ae890;
+ .timescale 0 0;
+v0x5555864af570_0 .var/2s "i", 31 0;
+S_0x5555864aec70 .scope begin, "$ivl_for_loop4" "$ivl_for_loop4" 3 63, 3 63 0, S_0x5555864aea90;
+ .timescale 0 0;
+v0x5555864af470_0 .var/2s "j", 31 0;
+S_0x5555864aee70 .scope begin, "$ivl_for_loop5" "$ivl_for_loop5" 3 66, 3 66 0, S_0x5555864aec70;
+ .timescale 0 0;
+v0x5555864af370_0 .var/2s "a", 31 0;
+S_0x5555864af070 .scope begin, "$ivl_for_loop6" "$ivl_for_loop6" 3 67, 3 67 0, S_0x5555864aee70;
+ .timescale 0 0;
+v0x5555864af270_0 .var/2s "b", 31 0;
+S_0x5555864af670 .scope begin, "$ivl_for_loop7" "$ivl_for_loop7" 3 92, 3 92 0, S_0x5555864ae890;
+ .timescale 0 0;
+v0x5555864afb50_0 .var/2s "i", 31 0;
+S_0x5555864af870 .scope begin, "$ivl_for_loop8" "$ivl_for_loop8" 3 93, 3 93 0, S_0x5555864af670;
+ .timescale 0 0;
+v0x5555864afa50_0 .var/2s "j", 31 0;
+S_0x5555864afc50 .scope begin, "$ivl_for_loop9" "$ivl_for_loop9" 3 102, 3 102 0, S_0x5555864ae890;
+ .timescale 0 0;
+v0x5555864b0110_0 .var/2s "i", 31 0;
+S_0x5555864afe30 .scope begin, "$ivl_for_loop10" "$ivl_for_loop10" 3 103, 3 103 0, S_0x5555864afc50;
+ .timescale 0 0;
+v0x5555864b0010_0 .var/2s "j", 31 0;
+    .scope S_0x55558644d050;
+T_0 ;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x5555864b0550_0, 0, 3;
+    %pushi/vec4 5, 0, 32;
+    %store/vec4 v0x5555864b0740_0, 0, 32;
+    %pushi/str "initial/blueinit.txt";
+    %store/str v0x5555864b0310_0;
+    %end;
+    .thread T_0, $init;
+    .scope S_0x55558644d050;
+T_1 ;
+    %vpi_call/w 3 12 "$display", "i initialized" {0 0 0};
+    %load/str v0x5555864b0310_0;
+    %pushi/str "";
+    %cmp/str;
+    %flag_inv 4;
+    %flag_get/vec4 4;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_1.0, 8;
+    %vpi_call/w 3 15 "$display", "what is happening" {0 0 0};
+    %vpi_call/w 3 16 "$readmemb", v0x5555864b0310_0, v0x5555864b04b0 {0 0 0};
+T_1.0 ;
+    %vpi_call/w 3 20 "$display", "\012Grid:" {0 0 0};
+    %fork t_1, S_0x55558647f990;
+    %jmp t_0;
+    .scope S_0x55558647f990;
+t_1 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555864ae790_0, 0, 32;
+T_1.2 ; Top of for-loop
+    %load/vec4 v0x5555864ae790_0;
+    %cmpi/s 8, 0, 32;
+	  %jmp/0xz T_1.3, 5;
+    %fork t_3, S_0x55558647fb70;
+    %jmp t_2;
+    .scope S_0x55558647fb70;
+t_3 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x55558647fd50_0, 0, 32;
+T_1.5 ; Top of for-loop
+    %load/vec4 v0x55558647fd50_0;
+    %cmpi/s 8, 0, 32;
+	  %jmp/0xz T_1.6, 5;
+    %ix/getv/s 4, v0x5555864ae790_0;
+    %load/vec4a v0x5555864b04b0, 4;
+    %pushi/vec4 7, 0, 33;
+    %load/vec4 v0x55558647fd50_0;
+    %pad/s 33;
+    %sub;
+    %part/s 1;
+    %vpi_call/w 3 23 "$write", "%0d ", S<0,vec4,u1> {1 0 0};
+T_1.7 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x55558647fd50_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x55558647fd50_0, 0, 32;
+    %jmp T_1.5;
+T_1.6 ; for-loop exit label
+    %end;
+    .scope S_0x55558647f990;
+t_2 %join;
+    %vpi_call/w 3 24 "$write", "\012" {0 0 0};
+T_1.4 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864ae790_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864ae790_0, 0, 32;
+    %jmp T_1.2;
+T_1.3 ; for-loop exit label
+    %end;
+    .scope S_0x55558644d050;
+t_0 %join;
+    %end;
+    .thread T_1;
+    .scope S_0x55558644d050;
+T_2 ;
+    %fork t_5, S_0x5555864ae890;
+    %jmp t_4;
+    .scope S_0x5555864ae890;
+t_5 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555864b0210_0, 0, 32;
+T_2.0 ; Top of for-loop
+    %load/vec4 v0x5555864b0210_0;
+    %load/vec4 v0x5555864b0740_0;
+    %cmp/s;
+	  %jmp/0xz T_2.1, 5;
+    %delay 100, 0;
+    %fork t_7, S_0x5555864aea90;
+    %jmp t_6;
+    .scope S_0x5555864aea90;
+t_7 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555864af570_0, 0, 32;
+T_2.3 ; Top of for-loop
+    %load/vec4 v0x5555864af570_0;
+    %cmpi/s 8, 0, 32;
+	  %jmp/0xz T_2.4, 5;
+    %fork t_9, S_0x5555864aec70;
+    %jmp t_8;
+    .scope S_0x5555864aec70;
+t_9 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555864af470_0, 0, 32;
+T_2.6 ; Top of for-loop
+    %load/vec4 v0x5555864af470_0;
+    %cmpi/s 8, 0, 32;
+	  %jmp/0xz T_2.7, 5;
+    %fork t_11, S_0x5555864aee70;
+    %jmp t_10;
+    .scope S_0x5555864aee70;
+t_11 ;
+    %pushi/vec4 4294967295, 0, 32;
+    %store/vec4 v0x5555864af370_0, 0, 32;
+T_2.9 ; Top of for-loop
+    %load/vec4 v0x5555864af370_0;
+    %cmpi/s 2, 0, 32;
+	  %jmp/0xz T_2.10, 5;
+    %fork t_13, S_0x5555864af070;
+    %jmp t_12;
+    .scope S_0x5555864af070;
+t_13 ;
+    %pushi/vec4 4294967295, 0, 32;
+    %store/vec4 v0x5555864af270_0, 0, 32;
+T_2.12 ; Top of for-loop
+    %load/vec4 v0x5555864af270_0;
+    %cmpi/s 2, 0, 32;
+	  %jmp/0xz T_2.13, 5;
+    %load/vec4 v0x5555864af370_0;
+    %cmpi/e 0, 0, 32;
+    %flag_get/vec4 4;
+    %jmp/0 T_2.17, 4;
+    %load/vec4 v0x5555864af270_0;
+    %pushi/vec4 0, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %and;
+T_2.17;
+    %nor/r;
+    %flag_set/vec4 8;
+    %jmp/0xz  T_2.15, 8;
+    %load/vec4 v0x5555864b0550_0;
+    %load/vec4 v0x5555864af570_0;
+    %load/vec4 v0x5555864af370_0;
+    %add;
+    %addi 8, 0, 32;
+    %pushi/vec4 8, 0, 32;
+    %mod/s;
+    %ix/vec4/s 4;
+    %load/vec4a v0x5555864b04b0, 4;
+    %pushi/vec4 7, 0, 33;
+    %load/vec4 v0x5555864af470_0;
+    %load/vec4 v0x5555864af270_0;
+    %add;
+    %addi 8, 0, 32;
+    %pushi/vec4 8, 0, 32;
+    %mod/s;
+    %pad/s 33;
+    %sub;
+    %part/s 1;
+    %pad/u 3;
+    %add;
+    %store/vec4 v0x5555864b0550_0, 0, 3;
+T_2.15 ;
+T_2.14 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864af270_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864af270_0, 0, 32;
+    %jmp T_2.12;
+T_2.13 ; for-loop exit label
+    %end;
+    .scope S_0x5555864aee70;
+t_12 %join;
+T_2.11 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864af370_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864af370_0, 0, 32;
+    %jmp T_2.9;
+T_2.10 ; for-loop exit label
+    %end;
+    .scope S_0x5555864aec70;
+t_10 %join;
+    %ix/getv/s 4, v0x5555864af570_0;
+    %load/vec4a v0x5555864b04b0, 4;
+    %pushi/vec4 7, 0, 33;
+    %load/vec4 v0x5555864af470_0;
+    %pad/s 33;
+    %sub;
+    %part/s 1;
+    %pad/u 32;
+    %cmpi/e 1, 0, 32;
+    %jmp/0xz  T_2.18, 4;
+    %load/vec4 v0x5555864b0550_0;
+    %pad/u 32;
+    %cmpi/e 2, 0, 32;
+    %flag_get/vec4 4;
+    %jmp/1 T_2.20, 4;
+    %load/vec4 v0x5555864b0550_0;
+    %pad/u 32;
+    %pushi/vec4 3, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %or;
+T_2.20;
+    %ix/getv/s 4, v0x5555864af570_0;
+    %flag_mov 8, 4;
+    %pushi/vec4 7, 0, 33;
+    %load/vec4 v0x5555864af470_0;
+    %pad/s 33;
+    %sub;
+    %ix/vec4/s 5;
+    %flag_or 4, 8;
+    %store/vec4a v0x5555864b0630, 4, 5;
+    %jmp T_2.19;
+T_2.18 ;
+    %load/vec4 v0x5555864b0550_0;
+    %pad/u 32;
+    %pushi/vec4 3, 0, 32;
+    %cmp/e;
+    %flag_get/vec4 4;
+    %ix/getv/s 4, v0x5555864af570_0;
+    %flag_mov 8, 4;
+    %pushi/vec4 7, 0, 33;
+    %load/vec4 v0x5555864af470_0;
+    %pad/s 33;
+    %sub;
+    %ix/vec4/s 5;
+    %flag_or 4, 8;
+    %store/vec4a v0x5555864b0630, 4, 5;
+T_2.19 ;
+    %pushi/vec4 0, 0, 3;
+    %store/vec4 v0x5555864b0550_0, 0, 3;
+T_2.8 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864af470_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864af470_0, 0, 32;
+    %jmp T_2.6;
+T_2.7 ; for-loop exit label
+    %end;
+    .scope S_0x5555864aea90;
+t_8 %join;
+T_2.5 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864af570_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864af570_0, 0, 32;
+    %jmp T_2.3;
+T_2.4 ; for-loop exit label
+    %end;
+    .scope S_0x5555864ae890;
+t_6 %join;
+    %fork t_15, S_0x5555864af670;
+    %jmp t_14;
+    .scope S_0x5555864af670;
+t_15 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555864afb50_0, 0, 32;
+T_2.21 ; Top of for-loop
+    %load/vec4 v0x5555864afb50_0;
+    %cmpi/s 8, 0, 32;
+	  %jmp/0xz T_2.22, 5;
+    %fork t_17, S_0x5555864af870;
+    %jmp t_16;
+    .scope S_0x5555864af870;
+t_17 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555864afa50_0, 0, 32;
+T_2.24 ; Top of for-loop
+    %load/vec4 v0x5555864afa50_0;
+    %cmpi/s 8, 0, 32;
+	  %jmp/0xz T_2.25, 5;
+    %ix/getv/s 4, v0x5555864afb50_0;
+    %load/vec4a v0x5555864b04b0, 4;
+    %pushi/vec4 7, 0, 33;
+    %load/vec4 v0x5555864afa50_0;
+    %pad/s 33;
+    %sub;
+    %part/s 1;
+    %pushi/vec4 63, 0, 32;
+    %load/vec4 v0x5555864afb50_0;
+    %muli 8, 0, 32;
+    %load/vec4 v0x5555864afa50_0;
+    %add;
+    %sub;
+    %ix/vec4/s 4;
+    %store/vec4 v0x5555864b0820_0, 4, 1;
+T_2.26 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864afa50_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864afa50_0, 0, 32;
+    %jmp T_2.24;
+T_2.25 ; for-loop exit label
+    %end;
+    .scope S_0x5555864af670;
+t_16 %join;
+T_2.23 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864afb50_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864afb50_0, 0, 32;
+    %jmp T_2.21;
+T_2.22 ; for-loop exit label
+    %end;
+    .scope S_0x5555864ae890;
+t_14 %join;
+    %vpi_call/w 3 97 "$display", "\012flattened output:" {0 0 0};
+    %vpi_call/w 3 98 "$write", "%b", v0x5555864b0820_0 {0 0 0};
+    %vpi_call/w 3 99 "$write", "\012" {0 0 0};
+    %fork t_19, S_0x5555864afc50;
+    %jmp t_18;
+    .scope S_0x5555864afc50;
+t_19 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555864b0110_0, 0, 32;
+T_2.27 ; Top of for-loop
+    %load/vec4 v0x5555864b0110_0;
+    %cmpi/s 8, 0, 32;
+	  %jmp/0xz T_2.28, 5;
+    %fork t_21, S_0x5555864afe30;
+    %jmp t_20;
+    .scope S_0x5555864afe30;
+t_21 ;
+    %pushi/vec4 0, 0, 32;
+    %store/vec4 v0x5555864b0010_0, 0, 32;
+T_2.30 ; Top of for-loop
+    %load/vec4 v0x5555864b0010_0;
+    %cmpi/s 8, 0, 32;
+	  %jmp/0xz T_2.31, 5;
+    %ix/getv/s 4, v0x5555864b0110_0;
+    %load/vec4a v0x5555864b0630, 4;
+    %pushi/vec4 7, 0, 33;
+    %load/vec4 v0x5555864b0010_0;
+    %pad/s 33;
+    %sub;
+    %part/s 1;
+    %ix/getv/s 4, v0x5555864b0110_0;
+    %flag_mov 8, 4;
+    %pushi/vec4 7, 0, 33;
+    %load/vec4 v0x5555864b0010_0;
+    %pad/s 33;
+    %sub;
+    %ix/vec4/s 5;
+    %flag_or 4, 8;
+    %store/vec4a v0x5555864b04b0, 4, 5;
+T_2.32 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864b0010_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864b0010_0, 0, 32;
+    %jmp T_2.30;
+T_2.31 ; for-loop exit label
+    %end;
+    .scope S_0x5555864afc50;
+t_20 %join;
+T_2.29 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864b0110_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864b0110_0, 0, 32;
+    %jmp T_2.27;
+T_2.28 ; for-loop exit label
+    %end;
+    .scope S_0x5555864ae890;
+t_18 %join;
+T_2.2 ; for-loop step statement
+    ; show_stmt_assign_vector: Get l-value for compressed += operand
+    %load/vec4 v0x5555864b0210_0;
+    %pushi/vec4 1, 0, 32;
+    %add;
+    %cast2;
+    %store/vec4 v0x5555864b0210_0, 0, 32;
+    %jmp T_2.0;
+T_2.1 ; for-loop exit label
+    %end;
+    .scope S_0x55558644d050;
+t_4 %join;
+    %vpi_call/w 3 106 "$finish" {0 0 0};
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "-";
+    "game_of_life_old.sv";
