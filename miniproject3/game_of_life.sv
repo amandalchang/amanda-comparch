@@ -7,7 +7,7 @@ module game_of_life #(
 );
     logic [0:7] current_grid [0:7]; // partially packed 8x8 grid of bools
     logic [0:7] next_grid [0:7];
-    logic [2:0] neighbor_count = 2'b0;
+    logic [2:0] neighbor_count = 3'b0;
 
     initial begin
 
@@ -17,6 +17,11 @@ module game_of_life #(
     end
 
     always_ff @(posedge time_to_calc_frame) begin
+        // Flatten grid and put it in output_array
+        for (int i=0; i<8; i++)
+            for (int j=0; j<8; j++)
+                output_array[63-(i*8 + j)] = current_grid[i][j];
+
         for (int i=0; i<8; i++) begin
             for (int j=0; j<8; j++) begin
                 // Neighbor counting
@@ -40,11 +45,6 @@ module game_of_life #(
                 neighbor_count = 0;
             end
         end
-
-        // Flatten next grid and put it in output_array
-        for (int i=0; i<8; i++)
-            for (int j=0; j<8; j++)
-                output_array[i*8 + j] = next_grid[i][j];
 
         // Move the new grid into the current grid
         for (int i=0; i<8; i++)

@@ -22,9 +22,9 @@ module top(
     logic [4:0] frame;
     logic [10:0] address;
     logic [5:0] pixel_count = 6'b0;
-    logic [63:0] green_output_grid;
-    logic [63:0] red_output_grid;
-    logic [63:0] blue_output_grid;
+    logic [63:0] green_output_array;
+    logic [63:0] red_output_array;
+    logic [63:0] blue_output_array;
 
     logic [23:0] shift_reg = 24'd0;
     logic debug;
@@ -44,7 +44,7 @@ module top(
     ) u1 (
         .clk                (clk),
         .time_to_calc_frame (time_to_calc_frame),
-        .output_array       (green_output_grid)      
+        .output_array       (green_output_array)      
     );
 
     // Instance the red game of life
@@ -53,7 +53,7 @@ module top(
     ) u2 (
         .clk                (clk),
         .time_to_calc_frame (time_to_calc_frame),
-        .output_array       (red_output_grid)
+        .output_array       (red_output_array)
     );
 
     // Instance the blue game of life
@@ -62,7 +62,7 @@ module top(
     ) u3 (
         .clk                (clk),
         .time_to_calc_frame (time_to_calc_frame),
-        .output_array       (blue_output_grid)
+        .output_array       (blue_output_array)
     );
 
     // Instance the WS2812B output driver
@@ -86,9 +86,9 @@ module top(
 
     always_ff @(posedge clk) begin
         if (load_sreg) begin // if it's time to load one pixel
-            green_data = green_output_grid[pixel_count] ? 8'b10010000 : 8'hFF;
-            blue_data = blue_output_grid[pixel_count] ? 8'b10010000 : 8'hFF;
-            red_data = red_output_grid[pixel_count] ? 8'b10010000 : 8'hFF;
+            green_data = green_output_array[pixel_count] ? 8'b10010000 : 8'hFF;
+            blue_data = blue_output_array[pixel_count] ? 8'b10010000 : 8'hFF;
+            red_data = red_output_array[pixel_count] ? 8'b10010000 : 8'hFF;
             pixel_count = pixel_count + 1; // add one to pixel count
             unique case ({ SW, BOOT })
                 2'b00:
@@ -111,7 +111,7 @@ module top(
         end
     end
 
-    assign RGB_R = ~debug;
+    assign RGB_R = ~debug; // helps me visualize frame rate
     assign _48b = ws2812b_out;
     assign _45a = ~ws2812b_out;
 
