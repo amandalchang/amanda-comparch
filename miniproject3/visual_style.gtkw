@@ -1,0 +1,30 @@
+[*]
+[*] GTKWave Analyzer v3.4.0 (w)1999-2022 BSI
+[*] Fri Oct 31 19:57:19 2025
+[*]
+[dumpfile] "/home/amanda/Documents/school/amanda-comparch/miniproject3/game_of_life.vcd"
+[dumpfile_mtime] "Fri Oct 31 19:49:36 2025"
+[dumpfile_size] 116000927
+[savefile] "/home/amanda/Documents/school/amanda-comparch/miniproject3/visual_style.gtkw"
+[timestart] 0
+[size] 1850 1006
+[pos] -1 -1
+*-23.819469 2730000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] game_of_life_tb.
+[treeopen] game_of_life_tb.u0.
+[treeopen] game_of_life_tb.u0.u1.
+[sst_width] 297
+[signals_width] 222
+[sst_expanded] 1
+[sst_vpaned_height] 282
+@28
+[color] 3
+game_of_life_tb.u0.time_to_calc_frame
+[color] 4
+game_of_life_tb.u0.green_output_array[63:0]
+[color] 1
+game_of_life_tb.u0.red_output_array[63:0]
+[color] 5
+game_of_life_tb.u0.blue_output_array[63:0]
+[pattern_trace] 1
+[pattern_trace] 0
