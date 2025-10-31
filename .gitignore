@@ -6,6 +6,7 @@
 
 # Ignore iverilog sim files
 *.vcd
+game_of_life
 mp2
 single
 miniproject1
