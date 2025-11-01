@@ -20,13 +20,10 @@ module game_of_life_tb;
     initial begin
         outfile = $fopen ("sim_results/outputfile.txt", "w");
 
-
         if (outfile) $display("File was opened successfully : %0d", outfile);
         else     $display("File was NOT opened successfully : %0d", outfile);
 
         $fdisplay(outfile, "%s\t%s\t%s", "Green   ", "Red     ", "Blue");
-
-
         $dumpfile("game_of_life.vcd");
         $dumpvars(0, game_of_life_tb);
       #20000000
