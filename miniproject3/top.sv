@@ -42,7 +42,6 @@ module top(
     game_of_life #(
         .INIT_FILE          ("initial/greeninit.txt")
     ) u1 (
-        .clk                (clk),
         .time_to_calc_frame (time_to_calc_frame),
         .output_array       (green_output_array)      
     );
@@ -51,7 +50,6 @@ module top(
     game_of_life #(
         .INIT_FILE          ("initial/redinit.txt")
     ) u2 (
-        .clk                (clk),
         .time_to_calc_frame (time_to_calc_frame),
         .output_array       (red_output_array)
     );
@@ -60,7 +58,6 @@ module top(
     game_of_life #(
         .INIT_FILE          ("initial/blueinit.txt")
     ) u3 (
-        .clk                (clk),
         .time_to_calc_frame (time_to_calc_frame),
         .output_array       (blue_output_array)
     );
@@ -111,7 +108,7 @@ module top(
         end
     end
 
-    assign RGB_R = ~debug; // helps me visualize frame rate
+    assign RGB_R = ~debug; // helps me visualize frame
     assign _48b = ws2812b_out;
     assign _45a = ~ws2812b_out;
 
